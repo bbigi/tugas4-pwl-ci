@@ -1,0 +1,358 @@
+/* =============================================
+   Artikulo - Neumorphic UI Global Stylesheet
+   artikulo/assets/css/neumorphic.css
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  --nm-bg:           #e8eaf0;
+  --nm-bg-inset:     #dde0e8;
+  --nm-shadow-light: #ffffff;
+  --nm-shadow-dark:  #c5c8d4;
+  --nm-accent:       #7c8cff;
+  --nm-accent2:      #a78bfa;
+  --nm-text:         #4a4e6a;
+  --nm-text-muted:   #8a8fac;
+  --nm-radius:       16px;
+  --nm-radius-sm:    10px;
+
+  /* Box shadow utilities */
+  --nm-raise:  6px 6px 14px var(--nm-shadow-dark), -6px -6px 14px var(--nm-shadow-light);
+  --nm-raise-lg: 10px 10px 22px var(--nm-shadow-dark), -10px -10px 22px var(--nm-shadow-light);
+  --nm-inset:  inset 4px 4px 10px var(--nm-shadow-dark), inset -4px -4px 10px var(--nm-shadow-light);
+  --nm-press:  inset 3px 3px 8px #b8bbc9, inset -2px -2px 6px #f0f2fa;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  background: var(--nm-bg);
+  color: var(--nm-text);
+  min-height: 100vh;
+}
+
+/* ─── Animations ─────────────────────────────── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.38s cubic-bezier(0.22, 0.8, 0.36, 1) both;
+}
+.fade-in-up-delay-1 { animation-delay: 0.06s; }
+.fade-in-up-delay-2 { animation-delay: 0.12s; }
+.fade-in-up-delay-3 { animation-delay: 0.18s; }
+.fade-in-up-delay-4 { animation-delay: 0.24s; }
+
+/* ─── Neumorphic Base Components ─────────────── */
+.nm-card {
+  background: var(--nm-bg);
+  border-radius: var(--nm-radius);
+  box-shadow: var(--nm-raise);
+  padding: 1.1rem 1.25rem;
+}
+
+.nm-card-lg {
+  background: var(--nm-bg);
+  border-radius: var(--nm-radius);
+  box-shadow: var(--nm-raise-lg);
+  padding: 1.4rem;
+}
+
+.nm-inset {
+  background: var(--nm-bg-inset);
+  border-radius: var(--nm-radius);
+  box-shadow: var(--nm-inset);
+  padding: 1rem 1.1rem;
+}
+
+/* ─── Buttons ─────────────────────────────────── */
+.nm-btn {
+  background: var(--nm-bg);
+  border: none;
+  border-radius: var(--nm-radius-sm);
+  box-shadow: var(--nm-raise);
+  color: var(--nm-text);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 10px 18px;
+  text-decoration: none;
+  transition: box-shadow 0.15s ease, transform 0.1s ease;
+  outline: none;
+}
+
+.nm-btn:hover {
+  box-shadow: var(--nm-raise-lg);
+  color: var(--nm-text);
+  text-decoration: none;
+}
+
+.nm-btn:active {
+  box-shadow: var(--nm-press);
+  transform: scale(0.97);
+}
+
+.nm-btn-accent {
+  background: linear-gradient(135deg, #7c8cff, #a78bfa);
+  color: #fff !important;
+  box-shadow: 4px 4px 12px #b8beff70, -2px -2px 8px #ffffffa0;
+}
+
+.nm-btn-accent:hover {
+  box-shadow: 6px 6px 16px #b8beff90, -3px -3px 10px #ffffffc0;
+}
+
+.nm-btn-accent:active {
+  box-shadow: inset 3px 3px 8px #5a60d0, inset -2px -2px 6px #c4c8ff;
+}
+
+.nm-btn-sm {
+  font-size: 12px;
+  padding: 7px 14px;
+}
+
+.nm-btn-full {
+  width: 100%;
+}
+
+/* ─── Form Inputs ─────────────────────────────── */
+.nm-input,
+.nm-select,
+.nm-textarea {
+  background: var(--nm-bg-inset);
+  border: none;
+  border-radius: var(--nm-radius-sm);
+  box-shadow: var(--nm-inset);
+  color: var(--nm-text);
+  font-family: inherit;
+  font-size: 14px;
+  padding: 11px 14px;
+  width: 100%;
+  outline: none;
+  transition: box-shadow 0.2s ease;
+}
+
+.nm-input:focus,
+.nm-select:focus,
+.nm-textarea:focus {
+  box-shadow: inset 5px 5px 12px var(--nm-shadow-dark),
+              inset -5px -5px 12px var(--nm-shadow-light),
+              0 0 0 2.5px #a78bfa55;
+}
+
+.nm-input::placeholder,
+.nm-textarea::placeholder {
+  color: var(--nm-text-muted);
+}
+
+.nm-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238a8fac' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  cursor: pointer;
+}
+
+.nm-textarea {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.6;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--nm-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 7px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* ─── Tags & Badges ───────────────────────────── */
+.nm-tag {
+  display: inline-block;
+  background: linear-gradient(135deg, #e8eaff, #f0e8ff);
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--nm-accent);
+  padding: 4px 11px;
+}
+
+.nm-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, #7c8cff, #a78bfa);
+  border-radius: 20px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 13px;
+}
+
+/* ─── Filter Chips ────────────────────────────── */
+.filter-chip {
+  background: var(--nm-bg);
+  border: none;
+  border-radius: 20px;
+  box-shadow: 3px 3px 8px var(--nm-shadow-dark), -3px -3px 8px var(--nm-shadow-light);
+  color: var(--nm-text-muted);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 15px;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.filter-chip:hover {
+  color: var(--nm-text);
+}
+
+.filter-chip.active {
+  box-shadow: var(--nm-press);
+  color: var(--nm-accent);
+  font-weight: 600;
+}
+
+/* ─── Toast / Alert ───────────────────────────── */
+.nm-toast {
+  background: linear-gradient(135deg, #7c8cff, #a78bfa);
+  border-radius: var(--nm-radius-sm);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 11px 18px;
+  margin-bottom: 14px;
+  text-align: center;
+  animation: fadeInUp 0.3s ease;
+}
+
+.nm-toast-error {
+  background: linear-gradient(135deg, #ff7c7c, #fa8bab);
+}
+
+/* ─── Navigation Bar ──────────────────────────── */
+.nm-navbar {
+  background: var(--nm-bg);
+  box-shadow: 0 4px 18px #c5c8d460;
+  padding: 11px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nm-navbar-logo {
+  font-size: 17px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #7c8cff, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-decoration: none;
+}
+
+.nm-navbar-tabs {
+  display: flex;
+  gap: 6px;
+}
+
+.nm-nav-tab {
+  background: var(--nm-bg);
+  border: none;
+  border-radius: 9px;
+  box-shadow: 3px 3px 8px var(--nm-shadow-dark), -3px -3px 8px var(--nm-shadow-light);
+  color: var(--nm-text-muted);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 7px 14px;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.nm-nav-tab:hover {
+  color: var(--nm-text);
+  text-decoration: none;
+}
+
+.nm-nav-tab.active {
+  box-shadow: var(--nm-press);
+  color: var(--nm-accent);
+  font-weight: 600;
+}
+
+/* ─── Page Layout ─────────────────────────────── */
+.nm-page {
+  padding: 18px 16px;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.nm-page-title {
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--nm-text);
+  margin-bottom: 4px;
+}
+
+.nm-page-sub {
+  font-size: 13px;
+  color: var(--nm-text-muted);
+  margin-bottom: 16px;
+}
+
+/* ─── Divider ─────────────────────────────────── */
+.nm-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--nm-shadow-dark), transparent);
+  margin: 14px 0;
+}
+
+/* ─── Utility ─────────────────────────────────── */
+.d-flex        { display: flex; }
+.align-center  { align-items: center; }
+.justify-between { justify-content: space-between; }
+.gap-8         { gap: 8px; }
+.gap-12        { gap: 12px; }
+.mb-8          { margin-bottom: 8px; }
+.mb-12         { margin-bottom: 12px; }
+.mb-16         { margin-bottom: 16px; }
+.mb-20         { margin-bottom: 20px; }
+.text-muted    { color: var(--nm-text-muted); }
+.text-accent   { color: var(--nm-accent); }
+.text-sm       { font-size: 13px; }
+.text-xs       { font-size: 11px; }
+.fw-600        { font-weight: 600; }
