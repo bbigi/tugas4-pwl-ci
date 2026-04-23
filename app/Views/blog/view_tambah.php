@@ -13,12 +13,18 @@ include __DIR__ . '/../layout/navbar.php';
     <p class="nm-page-sub">Isi semua kolom untuk mempublikasikan artikel.</p>
   </div>
 
-  <form method="POST" action="<?= base_url('blog/store') ?>" id="article-form">
+  <form method="POST" action="<?= base_url('blog/store') ?>" id="article-form" enctype="multipart/form-data">
     <div class="nm-card mb-14 fade-in-up fade-in-up-delay-1">
 
       <div class="form-group">
         <label class="form-label">Judul Artikel *</label>
         <input class="nm-input" type="text" name="title" placeholder="Masukkan judul..." required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Cover Artikel (opsional)</label>
+        <input class="nm-input" type="file" name="cover" accept="image/*">
+        <small class="form-text text-muted">Format: JPG, PNG, atau GIF. Maksimal 2MB.</small>
       </div>
 
       <div class="form-row">
@@ -56,6 +62,11 @@ include __DIR__ . '/../layout/navbar.php';
             <button type="button" id="btn-italic" class="nm-btn nm-btn-sm" title="Italic"><i>I</i></button>
             <button type="button" id="btn-h2" class="nm-btn nm-btn-sm" title="Heading 2">H2</button>
             <button type="button" id="btn-h3" class="nm-btn nm-btn-sm" title="Heading 3">H3</button>
+            <div style="width: 1px; height: 20px; background: var(--nm-shadow-dark); margin: 0 5px;"></div>
+            <button type="button" id="btn-align-left" class="nm-btn nm-btn-sm" title="Rata Kiri">⬅️</button>
+            <button type="button" id="btn-align-center" class="nm-btn nm-btn-sm" title="Tengah">↔️</button>
+            <button type="button" id="btn-align-right" class="nm-btn nm-btn-sm" title="Rata Kanan">➡️</button>
+            <button type="button" id="btn-align-justify" class="nm-btn nm-btn-sm" title="Justify">🔳</button>
             <div style="width: 1px; height: 20px; background: var(--nm-shadow-dark); margin: 0 5px;"></div>
             <button type="button" id="btn-image" class="nm-btn nm-btn-sm nm-btn-accent" title="Sisipkan Gambar">🖼 Tambah Gambar</button>
           </div>
@@ -112,6 +123,7 @@ include __DIR__ . '/../layout/navbar.php';
   import { Editor } from 'https://esm.sh/@tiptap/core';
   import StarterKit from 'https://esm.sh/@tiptap/starter-kit';
   import Image from 'https://esm.sh/@tiptap/extension-image';
+  import TextAlign from 'https://esm.sh/@tiptap/extension-text-align';
 
   // Inisialisasi TipTap
   const editor = new Editor({
@@ -121,6 +133,9 @@ include __DIR__ . '/../layout/navbar.php';
       Image.configure({
         inline: true,
         allowBase64: true, // Izinkan format gambar Base64
+      }),
+      TextAlign.configure({
+        types: ['heading', 'paragraph'],
       }),
     ],
     content: '<p>Tulis artikel kerenmu di sini, klik tombol gambar untuk menyisipkan ilustrasi...</p>',
@@ -146,7 +161,16 @@ include __DIR__ . '/../layout/navbar.php';
     document.querySelector('#btn-italic').classList.toggle('is-active', editor.isActive('italic'));
     document.querySelector('#btn-h2').classList.toggle('is-active', editor.isActive('heading', { level: 2 }));
     document.querySelector('#btn-h3').classList.toggle('is-active', editor.isActive('heading', { level: 3 }));
+    document.querySelector('#btn-align-left').classList.toggle('is-active', editor.isActive({ textAlign: 'left' }));
+    document.querySelector('#btn-align-center').classList.toggle('is-active', editor.isActive({ textAlign: 'center' }));
+    document.querySelector('#btn-align-right').classList.toggle('is-active', editor.isActive({ textAlign: 'right' }));
+    document.querySelector('#btn-align-justify').classList.toggle('is-active', editor.isActive({ textAlign: 'justify' }));
   }
+  // Tombol alignment
+  document.querySelector('#btn-align-left').addEventListener('click', () => editor.chain().focus().setTextAlign('left').run());
+  document.querySelector('#btn-align-center').addEventListener('click', () => editor.chain().focus().setTextAlign('center').run());
+  document.querySelector('#btn-align-right').addEventListener('click', () => editor.chain().focus().setTextAlign('right').run());
+  document.querySelector('#btn-align-justify').addEventListener('click', () => editor.chain().focus().setTextAlign('justify').run());
 
   // --- LOGIK UPLOAD GAMBAR ---
   const btnImage = document.querySelector('#btn-image');

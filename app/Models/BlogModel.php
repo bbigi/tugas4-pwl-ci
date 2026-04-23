@@ -14,7 +14,8 @@ class BlogModel
             'author' => 'Anggota Kelompok',
             'date' => '22 Apr 2026',
             'read_time' => '5 menit',
-            'body' => '<p>MVC (Model-View-Controller) adalah pola arsitektur yang memisahkan logika bisnis, presentasi, dan alur kontrol.</p>'
+            'body' => '<p>MVC (Model-View-Controller) adalah pola arsitektur yang memisahkan logika bisnis, presentasi, dan alur kontrol.</p>',
+            'cover' => null
         ]
     ];
 

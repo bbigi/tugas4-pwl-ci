@@ -10,7 +10,11 @@ include __DIR__ . '/../layout/navbar.php';
   </div>
 
   <div class="detail-cover fade-in-up fade-in-up-delay-1">
-    <?= $article['icon'] ?? '📄' ?>
+    <?php if (!empty($article['cover'])): ?>
+      <img src="<?= base_url('assets/covers/' . $article['cover']) ?>" alt="Cover Artikel" style="max-width:100%;max-height:140px;border-radius:16px;box-shadow:var(--nm-raise);object-fit:cover;">
+    <?php else: ?>
+      <?= $article['icon'] ?? '📄' ?>
+    <?php endif; ?>
   </div>
 
   <div class="nm-card mb-12 fade-in-up fade-in-up-delay-2">
