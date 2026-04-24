@@ -15,12 +15,6 @@ Proyek ini adalah tugas kelompok untuk mata kuliah **Pemrograman Web Lanjut** ya
 
 
 
-## **kurang bagian untuk:**
-1. uplod gambar untuk cover
-2. tambahkan alignment untuk penulisan artikel(paragraf)
-3. Resize foto
-4. Tentang update 
----
 
 ## 🛠️ Struktur Teknis
 * **Framework** : CodeIgniter 4.
